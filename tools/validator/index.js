@@ -38,7 +38,8 @@ class WireframeValidator {
    */
   checkBoxDrawingConsistency(content) {
     const lines = content.split('\n');
-    const boxChars = ['┌', '┐', '└', '┘', '─', '│', '├', '┤', '┬', '┴', '┼'];
+    // Tier 1 box drawing characters only (removed ┬, ┴, ┼ for Tier 2 layouts)
+    const boxChars = ['┌', '┐', '└', '┘', '─', '│', '├', '┤'];
 
     lines.forEach((line, idx) => {
       // Check for mixing ASCII and box-drawing characters in borders

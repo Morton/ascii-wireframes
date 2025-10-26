@@ -51,28 +51,91 @@ The documentation includes:
 
 ## Quick Start
 
+### 📚 New to ASCII Wireframes?
+
+👉 **[Quick Start Guide](https://morton.github.io/ascii-wireframes/#/docs/QUICK-START)** - Get up and running in 5 minutes
+
+👉 **[AI Integration Guide](https://morton.github.io/ascii-wireframes/#/docs/AI-INTEGRATION)** - Use with Claude Code, Copilot, and ChatGPT
+
 ### Writing Your First ASCII Wireframe
 
+Create a simple login form:
+
 ```
-┌─────────────────────────────────────┐
-│ My App                         [≡]  │
-├─────────────────────────────────────┤
-│                                     │
-│  Welcome to My App                  │
-│                                     │
-│  [  Search...              ] [🔍]  │
-│                                     │
-│  ┌──────────────────────────────┐  │
-│  │ Item 1                    ▸  │  │
-│  ├──────────────────────────────┤  │
-│  │ Item 2                    ▸  │  │
-│  ├──────────────────────────────┤  │
-│  │ Item 3                    ▸  │  │
-│  └──────────────────────────────┘  │
-│                                     │
-│  [ Load More ]                      │
-│                                     │
-└─────────────────────────────────────┘
+┌─────────────────────────┐
+│ Login                   │
+├─────────────────────────┤
+│                         │
+│  Email:                 │
+│  [_________________]    │
+│                         │
+│  Password:              │
+│  [_________________]    │
+│                         │
+│  [ ] Remember me        │
+│                         │
+│  [ Login ]              │
+│                         │
+└─────────────────────────┘
+```
+
+**Box-drawing characters**: `┌ ┐ └ ┘ ─ │ ├ ┤`
+**Interactive elements**: `[ Button ]` `[________]` `[ ]` `[x]`
+
+### Using the Tools
+
+**Validate your wireframe**:
+```bash
+cd tools/validator
+node index.js ../../examples/01-login-form.md
+```
+
+**Transform to HTML**:
+```bash
+cd tools/transformer
+npm test  # Run all tests
+```
+
+**Transform programmatically**:
+```javascript
+import { transform } from './tools/transformer/index.js';
+
+const html = transform(`
+┌──────────┐
+│ [Button] │
+└──────────┘
+`);
+// Output: <div style="..."><button>Button</button></div>
+```
+
+### Use with AI Assistants
+
+**With Claude Code**:
+```
+Create a React component from this wireframe:
+
+┌─────────────────────────┐
+│ User Profile       [⚙]  │
+├─────────────────────────┤
+│ Name: [___________]     │
+│ Email: [__________]     │
+│ [ Save ]  [ Cancel ]    │
+└─────────────────────────┘
+```
+
+**With GitHub Copilot** - Add wireframes in JSDoc comments:
+```javascript
+/**
+ * ┌─────────────┐
+ * │ Login  [×]  │
+ * ├─────────────┤
+ * │ [_________] │
+ * │ [ Submit ]  │
+ * └─────────────┘
+ */
+function LoginModal() {
+  // Copilot autocompletes based on wireframe
+}
 ```
 
 ## Status

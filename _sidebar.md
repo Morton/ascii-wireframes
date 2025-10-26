@@ -2,6 +2,10 @@
 
 * [Home](/)
 
+* Getting Started
+  * [Quick Start](docs/QUICK-START.md)
+  * [AI Integration Guide](docs/AI-INTEGRATION.md)
+
 * [Specification](spec/v0.1-draft.md)
 
 * Examples

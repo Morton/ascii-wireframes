@@ -2,6 +2,11 @@
 
 Research conducted: 2025-10-26
 
+> **📌 Current Spec Status (v0.1)**
+> This spec currently focuses **exclusively on Tier 1 critical elements** (12 core components).
+> Tier 2+ elements have been deferred to future versions pending real-world usage feedback.
+> See [Specification v0.1](../spec/v0.1-draft.md) for currently supported elements.
+
 ## Research Sources
 - Material-UI (MUI) component library
 - Ant Design component library
