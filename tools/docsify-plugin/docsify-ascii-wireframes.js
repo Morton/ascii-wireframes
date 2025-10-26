@@ -25,9 +25,9 @@
     if (transformerModule) return transformerModule;
 
     try {
-      // Determine the base path (handles both root and subdirectories)
-      const basePath = window.$docsify?.basePath || '';
-      const transformerPath = basePath + 'tools/transformer/index.js';
+      // Use absolute path from document root
+      // This works because the plugin is loaded from the root index.html
+      const transformerPath = '/tools/transformer/index.js';
 
       // Import the transformer module
       const module = await import(transformerPath);
@@ -35,7 +35,7 @@
       return module;
     } catch (err) {
       console.error('Failed to load ASCII wireframes transformer:', err);
-      console.error('Attempted path:', err.message);
+      console.error('Attempted to import from:', transformerPath);
       return null;
     }
   }
