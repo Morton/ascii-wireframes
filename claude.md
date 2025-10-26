@@ -42,6 +42,6 @@ When working on this project, always follow these principles:
 
 ## Common Tasks
 
-- Run validator: `cd tools/validator && npm test`
-- Validate example: `npm run validate examples/<file>`
-- Build docs: `npm run docs`
+- Run transformer tests: `cd tools/transformer && npm test`
+- Transform ASCII to HTML: `cd tools/transformer && node -e "import('./index.js').then(m => console.log(m.transform(\`[your wireframe]\`)))"`
+- View documentation: Open `index.html` in a browser (GitHub Pages)

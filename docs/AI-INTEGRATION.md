@@ -480,7 +480,7 @@ including state management and data flow:
 - 📖 Review [Quick Start Guide](QUICK-START.md)
 - 🎯 See [Examples](../examples/README.md) with AI prompts
 - 📋 Check [Specification](../spec/v0.1-draft.md) for supported elements
-- 🔧 Use [Validator](../tools/validator/README.md) before sharing with AI
+- 🔧 Use [Transformer](../tools/transformer/README.md) to validate your wireframes
 
 ---
 

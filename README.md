@@ -18,7 +18,7 @@ ASCII wireframes have emerged as a powerful, universal format for describing use
 ascii-wireframes/
 ├── spec/           # Specification documents
 ├── tools/          # Development tooling
-│   └── validator/  # Validation tools
+│   └── transformer/  # ASCII to HTML transformation
 ├── examples/       # Example ASCII wireframes
 ├── docs/           # Additional documentation
 └── claude.md       # Instructions for Claude Code
@@ -44,8 +44,8 @@ Each addition should provide immediate, tangible value to users.
 
 The documentation includes:
 - Complete specification (v0.1)
-- Interactive examples
-- Validation tools guide
+- Interactive examples with HTML transformation
+- Quick Start guide and AI integration guide
 - Contribution guidelines
 - Branch preview setup (Vercel)
 
@@ -83,12 +83,6 @@ Create a simple login form:
 **Interactive elements**: `[ Button ]` `[________]` `[ ]` `[x]`
 
 ### Using the Tools
-
-**Validate your wireframe**:
-```bash
-cd tools/validator
-node index.js ../../examples/01-login-form.md
-```
 
 **Transform to HTML**:
 ```bash

@@ -43,19 +43,7 @@ Create a simple login form:
 - Text inputs: `[___________]`
 - Checkboxes: `[ ]` (unchecked) or `[x]` (checked)
 
-## Step 2: Validate Your Wireframe
-
-```bash
-cd tools/validator
-node index.js ../../examples/01-login-form.md
-```
-
-The validator checks for:
-- Consistent box-drawing characters
-- Balanced brackets
-- Line length (readability)
-
-## Step 3: Transform to HTML
+## Step 2: Transform to HTML
 
 ```bash
 cd tools/transformer
@@ -73,7 +61,7 @@ Output:
 </div>
 ```
 
-## Step 4: Use with AI Assistants
+## Step 3: Use with AI Assistants
 
 ### With Claude Code
 
@@ -256,13 +244,13 @@ See [Known Limitations](../spec/v0.1-draft.md#known-limitations) for details.
 
 - 📖 Read the [Full Specification](../spec/v0.1-draft.md)
 - 🔍 Browse [Examples](../examples/README.md)
-- 🛠️ Explore [Tools & Validation](../tools/validator/README.md)
+- 🛠️ Explore [Transformer Tool](../tools/transformer/README.md)
 - 💡 Check [UI Elements Priority Analysis](../research/ui-elements-priority-analysis.md)
 
 ## Getting Help
 
 - **Specification questions**: See [spec/v0.1-draft.md](../spec/v0.1-draft.md)
-- **Tool issues**: Check [tools/validator/README.md](../tools/validator/README.md)
+- **Transformer tool**: Check [tools/transformer/README.md](../tools/transformer/README.md)
 - **Examples**: Browse [examples/](../examples/)
 - **Contribute**: See [claude.md](../claude.md)
 

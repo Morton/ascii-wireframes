@@ -15,7 +15,7 @@
   * [Examples README](examples/README.md)
 
 * Tools
-  * [Validator](tools/validator/README.md)
+  * [Transformer](tools/transformer/README.md)
 
 * Research
   * [UI Elements Priority Analysis](research/ui-elements-priority-analysis.md)

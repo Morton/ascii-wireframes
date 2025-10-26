@@ -75,9 +75,8 @@ Based on the [ASCII Wireframes v0.1 specification](../../spec/v0.1-draft.md):
 - ✅ Links: `→ Learn More` or `Learn More →`
 - 🚧 Icons: `[🔍]`, `[≡]`, `[⚙]`
 
-### 3. Lists and Grids
+### 3. Lists
 - ✅ Simple lists: `- Item`
-- 🚧 Card grids (horizontal boxes)
 
 ### 4. Text Hierarchy
 - ✅ Large headings: `# Heading`
@@ -89,10 +88,10 @@ Based on the [ASCII Wireframes v0.1 specification](../../spec/v0.1-draft.md):
 - 🚧 Spacing preservation
 
 ### 6. Common Patterns
-- 🚧 Navigation headers
-- 🚧 Form layouts
-- 🚧 Card layouts
-- 🚧 Sidebar layouts
+- ✅ Form layouts
+- ❌ Navigation headers (Tier 2 - deferred)
+- ❌ Card grids (Tier 2 - deferred)
+- ❌ Sidebar layouts (Tier 2 - deferred)
 
 Legend: ✅ Implemented | 🚧 Planned | ❌ Not yet started
 
@@ -156,10 +155,9 @@ transform('[ Submit ]', {
 This tool is being developed using **Test-Driven Development (TDD)**:
 
 1. ✅ Write comprehensive test cases based on the specification
-2. 🚧 Implement transformation logic to pass tests
-3. 🚧 Refactor and optimize
+2. ✅ Implement transformation logic for Tier 1 elements
+3. ✅ Refactor to transpiler architecture (Lexer → Parser → AST → Generator)
 4. 🚧 Add CLI interface
-5. 🚧 Integrate with validator tool
 
 ## Contributing
 
@@ -183,12 +181,11 @@ The transformer uses a multi-stage pipeline:
 ## Future Enhancements
 
 - [ ] CLI interface with file I/O
-- [ ] Integration with validator tool
 - [ ] Support for custom component mapping
 - [ ] Multiple output formats (React JSX, Vue templates, etc.)
 - [ ] VS Code extension integration
 - [ ] Real-time preview in browser
-- [ ] Diff view for iterative changes
+- [ ] Tier 2 elements (navigation, card grids, sidebars, tables)
 
 ## License
 
