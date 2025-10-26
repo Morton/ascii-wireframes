@@ -137,7 +137,6 @@ A simple authentication form with email/password fields and social login options
 
 #### **Unstyled HTML**
 
-```html
 <div>
   <h2>Welcome Back!</h2>
 
@@ -180,7 +179,6 @@ A simple authentication form with email/password fields and social login options
     Don't have an account? <a href="#">→ Sign up</a>
   </div>
 </div>
-```
 
 <!-- tabs:end -->
 

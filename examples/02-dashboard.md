@@ -155,7 +155,6 @@ An admin dashboard with metrics cards, activity feed, and quick actions.
 
 #### **Unstyled HTML**
 
-```html
 <div>
   <!-- Header -->
   <header>
@@ -209,7 +208,6 @@ An admin dashboard with metrics cards, activity feed, and quick actions.
     </div>
   </div>
 </div>
-```
 
 <!-- tabs:end -->
 

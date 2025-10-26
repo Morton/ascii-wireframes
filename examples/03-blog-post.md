@@ -213,7 +213,6 @@ A complete blog post layout with featured image, article content, engagement but
 
 #### **Unstyled HTML**
 
-```html
 <div>
   <!-- Header -->
   <header>
@@ -286,7 +285,6 @@ A complete blog post layout with featured image, article content, engagement but
     <button>Load More Comments</button>
   </article>
 </div>
-```
 
 <!-- tabs:end -->
 
