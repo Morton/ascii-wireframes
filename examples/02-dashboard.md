@@ -12,6 +12,10 @@ An admin dashboard with metrics cards, activity feed, and quick actions.
 
 ## Wireframe
 
+<!-- tabs:start -->
+
+#### **ASCII Wireframe**
+
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │ Dashboard                    [🔍 Search...]  [@user] [⚙] [≡]  │
@@ -39,6 +43,117 @@ An admin dashboard with metrics cards, activity feed, and quick actions.
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
+
+#### **HTML Preview**
+
+<div style="border: 1px solid black;">
+  <header style="padding: 16px; border-bottom: 1px solid black; display: flex; justify-content: space-between; align-items: center;">
+    <strong>Dashboard</strong>
+    <div style="display: flex; gap: 16px; align-items: center;">
+      <input type="text" placeholder="🔍 Search..." style="border: 1px solid black; padding: 4px 8px;">
+      <span style="border: 1px solid black; padding: 4px 8px;">@user</span>
+      <button style="border: 1px solid black; padding: 4px 8px; background: white;">⚙</button>
+      <button style="border: 1px solid black; padding: 4px 8px; background: white;">≡</button>
+    </div>
+  </header>
+
+  <div style="padding: 24px;">
+    <h3 style="margin-bottom: 16px;">Overview</h3>
+
+    <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+      <div style="border: 1px solid black; padding: 16px; flex: 1; text-align: center;">
+        <div style="font-size: 0.9em; margin-bottom: 8px;">Total Users</div>
+        <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 4px;">12,543</div>
+        <div style="color: green;">↑ 12%</div>
+      </div>
+      <div style="border: 1px solid black; padding: 16px; flex: 1; text-align: center;">
+        <div style="font-size: 0.9em; margin-bottom: 8px;">Revenue</div>
+        <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 4px;">$45,231</div>
+        <div style="color: green;">↑ 8%</div>
+      </div>
+      <div style="border: 1px solid black; padding: 16px; flex: 1; text-align: center;">
+        <div style="font-size: 0.9em; margin-bottom: 8px;">Active</div>
+        <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 4px;">1,829</div>
+        <div style="color: red;">↓ 3%</div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 12px;">Recent Activity</h3>
+    <div style="border: 1px solid black; padding: 16px; margin-bottom: 24px;">
+      <div style="margin-bottom: 8px;">• New user registration: john@example.com <span style="float: right;">2m ago</span></div>
+      <div style="margin-bottom: 8px;">• Payment received: $99.00 <span style="float: right;">5m ago</span></div>
+      <div style="margin-bottom: 8px;">• Support ticket created: #12345 <span style="float: right;">15m ago</span></div>
+      <div>• New blog post published: "Getting Started" <span style="float: right;">1h ago</span></div>
+    </div>
+
+    <h3 style="margin-bottom: 12px;">Quick Actions</h3>
+    <div style="display: flex; gap: 8px;">
+      <button style="border: 1px solid black; padding: 8px 16px; background: white;">+ New User</button>
+      <button style="border: 1px solid black; padding: 8px 16px; background: white;">+ New Post</button>
+      <button style="border: 1px solid black; padding: 8px 16px; background: white;">View Reports</button>
+    </div>
+  </div>
+</div>
+
+#### **HTML Code**
+
+```html
+<div style="border: 1px solid black;">
+  <!-- Header -->
+  <header style="padding: 16px; border-bottom: 1px solid black; display: flex; justify-content: space-between; align-items: center;">
+    <strong>Dashboard</strong>
+    <div style="display: flex; gap: 16px; align-items: center;">
+      <input type="text" placeholder="🔍 Search..." style="border: 1px solid black; padding: 4px 8px;">
+      <span style="border: 1px solid black; padding: 4px 8px;">@user</span>
+      <button style="border: 1px solid black; padding: 4px 8px; background: white;">⚙</button>
+      <button style="border: 1px solid black; padding: 4px 8px; background: white;">≡</button>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div style="padding: 24px;">
+    <h3 style="margin-bottom: 16px;">Overview</h3>
+
+    <!-- Metrics cards -->
+    <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+      <div style="border: 1px solid black; padding: 16px; flex: 1; text-align: center;">
+        <div style="font-size: 0.9em; margin-bottom: 8px;">Total Users</div>
+        <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 4px;">12,543</div>
+        <div style="color: green;">↑ 12%</div>
+      </div>
+      <div style="border: 1px solid black; padding: 16px; flex: 1; text-align: center;">
+        <div style="font-size: 0.9em; margin-bottom: 8px;">Revenue</div>
+        <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 4px;">$45,231</div>
+        <div style="color: green;">↑ 8%</div>
+      </div>
+      <div style="border: 1px solid black; padding: 16px; flex: 1; text-align: center;">
+        <div style="font-size: 0.9em; margin-bottom: 8px;">Active</div>
+        <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 4px;">1,829</div>
+        <div style="color: red;">↓ 3%</div>
+      </div>
+    </div>
+
+    <!-- Recent activity -->
+    <h3 style="margin-bottom: 12px;">Recent Activity</h3>
+    <div style="border: 1px solid black; padding: 16px; margin-bottom: 24px;">
+      <div style="margin-bottom: 8px;">• New user registration: john@example.com <span style="float: right;">2m ago</span></div>
+      <div style="margin-bottom: 8px;">• Payment received: $99.00 <span style="float: right;">5m ago</span></div>
+      <div style="margin-bottom: 8px;">• Support ticket created: #12345 <span style="float: right;">15m ago</span></div>
+      <div>• New blog post published: "Getting Started" <span style="float: right;">1h ago</span></div>
+    </div>
+
+    <!-- Quick actions -->
+    <h3 style="margin-bottom: 12px;">Quick Actions</h3>
+    <div style="display: flex; gap: 8px;">
+      <button style="border: 1px solid black; padding: 8px 16px; background: white;">+ New User</button>
+      <button style="border: 1px solid black; padding: 8px 16px; background: white;">+ New Post</button>
+      <button style="border: 1px solid black; padding: 8px 16px; background: white;">View Reports</button>
+    </div>
+  </div>
+</div>
+```
+
+<!-- tabs:end -->
 
 ## Use Case
 
