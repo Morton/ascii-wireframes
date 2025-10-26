@@ -185,7 +185,7 @@ function transformBoxStructure(lines, styled, styles) {
   const dividerIdx = lines.findIndex(line => line.includes('├') && line.includes('┤'));
 
   if (dividerIdx > 0) {
-    // Box with header
+    // Box with header - all boxes with dividers produce same structure
     const headerLines = lines.slice(1, dividerIdx);
     const contentLines = lines.slice(dividerIdx + 1, -1);
 
@@ -199,30 +199,7 @@ function transformBoxStructure(lines, styled, styles) {
     const headerStyleAttr = styled ? ` style="${styles.boxHeader}"` : '';
     const boxStyleAttr = styled ? ` style="border: 1px solid black;"` : '';
 
-    // Check if header looks like navigation
-    if (headerContent.includes('Logo') || headerContent.includes('Home') ||
-        (headerContent.split(/\s+/).length > 3)) {
-      return `<header${boxStyleAttr}>
-  <div${headerStyleAttr}>
-    ${transformLine(headerContent, styled, styles)}
-  </div>
-  ${bodyContent}
-</header>`.trim();
-    }
-
-    // Check if it's a form (contains "Form" in header)
-    if (headerContent.includes('Form')) {
-      const formStyleAttr = styled ? ` style="${styles.form}"` : '';
-      return `<form${formStyleAttr}>
-  <div${headerStyleAttr}>
-    <strong>${headerContent}</strong>
-  </div>
-  <div style="padding: 16px;">
-    ${bodyContent}
-  </div>
-</form>`.trim();
-    }
-
+    // Fully deterministic: always produce <div> regardless of content
     return `<div${boxStyleAttr}>
   <div${headerStyleAttr}>
     ${headerContent}
