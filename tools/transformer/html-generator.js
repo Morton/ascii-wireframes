@@ -106,7 +106,7 @@ function generateNode(node, styled, styles, indent) {
       return generateIcon(node, styled, styles);
 
     case NodeType.INLINE_CONTENT:
-      return generateInlineContent(node, styled, styles);
+      return generateInlineContent(node, styled, styles, indent);
 
     default:
       return '';
@@ -132,12 +132,12 @@ function generateBox(node, styled, styles, indent) {
 
   if (node.hasHeader) {
     const headerStyleAttr = styled ? ` style="${styles.boxHeader}"` : '';
-    const headerHtml = generateNode(node.header, styled, styles, indent + 1);
+    const headerHtml = generateNode(node.header, styled, styles, indent + 2);
     const bodyHtml = generateNode(node.body, styled, styles, indent + 1);
 
     return `${spaces}<div${styleAttr}>
 ${spaces}  <div${headerStyleAttr}>
-${spaces}    ${headerHtml}
+${headerHtml}
 ${spaces}  </div>
 ${bodyHtml}
 ${spaces}</div>`;
@@ -184,11 +184,11 @@ function generateSidebar(node, styled, styles, indent) {
 
   return `${spaces}<div${containerStyleAttr}>
 ${spaces}  <nav${leftStyleAttr}>
-${spaces}    ${leftHtml}
+${leftHtml}
 ${spaces}  </nav>
 
 ${spaces}  <main${rightStyleAttr}>
-${spaces}    ${rightHtml}
+${rightHtml}
 ${spaces}  </main>
 ${spaces}</div>`;
 }
@@ -200,14 +200,20 @@ function generateContainer(node, styled, styles, indent) {
   return node.children
     .map(child => generateNode(child, styled, styles, indent))
     .filter(html => html.length > 0)
-    .join('\n    ');
+    .join('\n');
 }
 
 /**
  * Generate text
  */
 function generateText(node, indent) {
-  return node.value;
+  const spaces = '  '.repeat(indent);
+  // Don't trim whitespace-only values (they're intentional in inline content)
+  // Only trim leading/trailing whitespace for block-level text
+  if (indent === 0 || node.value.trim() === '') {
+    return node.value;
+  }
+  return `${spaces}${node.value.trim()}`;
 }
 
 /**
@@ -332,8 +338,10 @@ function generateIcon(node, styled, styles) {
 /**
  * Generate inline content
  */
-function generateInlineContent(node, styled, styles) {
-  return node.children
+function generateInlineContent(node, styled, styles, indent) {
+  const spaces = '  '.repeat(indent);
+  const content = node.children
     .map(child => generateNode(child, styled, styles, 0))
     .join('');
+  return `${spaces}${content.trim()}`;
 }

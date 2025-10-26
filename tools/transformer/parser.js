@@ -227,7 +227,8 @@ class Parser {
       const hasOnlyUnderscores = lineTokens.every(t =>
         t.type === TokenType.UNDERSCORE ||
         t.type === TokenType.BOX_VERTICAL ||
-        t.type === TokenType.WHITESPACE
+        t.type === TokenType.WHITESPACE ||
+        t.type === TokenType.NEWLINE
       );
 
       const hasAtLeastOneUnderscore = lineTokens.some(t =>
@@ -511,6 +512,27 @@ class Parser {
       }
       // Link
       else if (token.type === TokenType.ARROW) {
+        // Check if there are preceding text nodes (for trailing arrow links)
+        if (nodes.length > 0) {
+          // Collect trailing text nodes
+          const textNodes = [];
+          while (nodes.length > 0 && nodes[nodes.length - 1].type === AST.NodeType.TEXT) {
+            textNodes.unshift(nodes.pop());
+          }
+
+          if (textNodes.length > 0) {
+            // Trailing arrow link: "Text →"
+            const text = textNodes.map(n => n.value).join('').trim();
+            nodes.push(AST.createLink(text, 'after'));
+            i++;
+            continue;
+          }
+
+          // If no text nodes, push them back
+          nodes.push(...textNodes);
+        }
+
+        // Leading arrow link: "→ Text"
         const result = this.parseArrowLink(tokens, i);
         nodes.push(result.node);
         i = result.nextIndex;
@@ -750,7 +772,19 @@ class Parser {
       this.advance();
     }
 
-    return this.parseLineTokens(lineTokens);
+    const result = this.parseLineTokens(lineTokens);
+
+    // If result is InlineContent with only text nodes, wrap in paragraph
+    // (this only happens at document level, not inside boxes)
+    if (result && result.type === AST.NodeType.INLINE_CONTENT) {
+      const allText = result.children.every(n => n.type === AST.NodeType.TEXT);
+      if (allText) {
+        const content = result.children.map(n => n.value).join('');
+        return AST.createParagraph(content);
+      }
+    }
+
+    return result;
   }
 
   /**
@@ -781,7 +815,7 @@ class Parser {
       }
 
       const content = contentTokens
-        .filter(t => t.type === TokenType.TEXT)
+        .filter(t => t.type === TokenType.TEXT || t.type === TokenType.WHITESPACE)
         .map(t => t.value)
         .join('');
 
@@ -812,7 +846,8 @@ class Parser {
     let text = '';
 
     while (!this.isAtEnd() && this.current().pos.line === lineNum) {
-      if (this.current().type === TokenType.TEXT) {
+      if (this.current().type === TokenType.TEXT ||
+          this.current().type === TokenType.WHITESPACE) {
         text += this.current().value;
       }
       this.advance();
