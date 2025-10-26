@@ -47,7 +47,7 @@ The documentation includes:
 - Interactive examples
 - Validation tools guide
 - Contribution guidelines
-- Branch preview setup (Netlify)
+- Branch preview setup (Vercel)
 
 ## Quick Start
 

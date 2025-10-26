@@ -2,7 +2,7 @@
 
 This repository is configured to automatically deploy to GitHub Pages using Docsify.
 
-> **💡 Want branch previews?** See [Branch Previews](BRANCH-PREVIEWS.md) for setting up automatic preview deployments with Netlify.
+> **💡 Want branch previews?** See [Branch Previews](BRANCH-PREVIEWS.md) for setting up automatic preview deployments with Vercel.
 
 ## Enabling GitHub Pages
 
