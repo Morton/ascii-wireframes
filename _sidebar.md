@@ -16,6 +16,8 @@
 
 * Tools
   * [Transformer](tools/transformer/README.md)
+  * [Docsify Plugin](tools/docsify-plugin/README.md)
+  * [Plugin Demo](docs/PLUGIN-DEMO.md)
 
 * Research
   * [UI Elements Priority Analysis](research/ui-elements-priority-analysis.md)
