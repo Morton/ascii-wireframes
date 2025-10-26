@@ -135,51 +135,6 @@ A simple authentication form with email/password fields and social login options
 </div>
 ```
 
-#### **Unstyled HTML**
-
-<div>
-  <h2>Welcome Back!</h2>
-
-  <div>
-    <label>Email:</label>
-    <input type="email">
-  </div>
-
-  <div>
-    <label>Password:</label>
-    <input type="password">
-  </div>
-
-  <div>
-    <label>
-      <input type="checkbox"> Remember me
-    </label>
-  </div>
-
-  <div>
-    <button>Sign In</button>
-  </div>
-
-  <div>
-    <a href="#">→ Forgot password?</a>
-  </div>
-
-  <div>
-    or
-  </div>
-
-  <div>
-    <button>Continue with Google</button>
-  </div>
-  <div>
-    <button>Continue with GitHub</button>
-  </div>
-
-  <div>
-    Don't have an account? <a href="#">→ Sign up</a>
-  </div>
-</div>
-
 <!-- tabs:end -->
 
 ## Use Case
