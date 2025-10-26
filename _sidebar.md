@@ -15,6 +15,7 @@
 
 * Documentation
   * [GitHub Pages Setup](docs/SETUP.md)
+  * [Branch Previews](docs/BRANCH-PREVIEWS.md)
 
 * [Contributing](claude.md)
 

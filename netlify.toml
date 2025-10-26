@@ -1,0 +1,40 @@
+# Netlify configuration for ASCII Wireframes documentation
+
+[build]
+  # No build command needed - Docsify is pure client-side
+  publish = "."
+
+[build.environment]
+  # No build environment needed
+
+# Branch deploy previews - automatically created for all branches
+[context.branch-deploy]
+  # Same as production - it's all static
+
+# Deploy preview for pull requests
+[context.deploy-preview]
+  # Same as production
+
+# Production branch
+[context.production]
+  publish = "."
+
+# Custom headers for better performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
