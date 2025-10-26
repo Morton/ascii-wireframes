@@ -13,6 +13,9 @@
 * Tools
   * [Validator](tools/validator/README.md)
 
+* Research
+  * [UI Elements Priority Analysis](research/ui-elements-priority-analysis.md)
+
 * Documentation
   * [GitHub Pages Setup](docs/SETUP.md)
   * [Branch Previews](docs/BRANCH-PREVIEWS.md)
