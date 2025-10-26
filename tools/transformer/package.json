@@ -1,0 +1,20 @@
+{
+  "name": "@ascii-wireframes/transformer",
+  "version": "0.1.0",
+  "description": "Transform ASCII wireframes into HTML code",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+  },
+  "keywords": [
+    "ascii",
+    "wireframes",
+    "html",
+    "transformer",
+    "generator"
+  ],
+  "author": "",
+  "license": "MIT"
+}
