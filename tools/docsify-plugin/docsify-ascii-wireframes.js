@@ -60,8 +60,8 @@
           }
 
           try {
-            // Find all code blocks with 'wireframe' language
-            const wireframePattern = /```wireframe\n([\s\S]*?)```/g;
+            // Find all code blocks with 'wireframe' or 'wireframe-src' language
+            const wireframePattern = /```wireframe(-src)?\n([\s\S]*?)```/g;
             let transformedMarkdown = markdown;
             let match;
             const matches = [];
@@ -70,31 +70,52 @@
             while ((match = wireframePattern.exec(markdown)) !== null) {
               matches.push({
                 fullMatch: match[0],
-                ascii: match[1],
+                showSourceFirst: match[1] === '-src', // true if wireframe-src
+                ascii: match[2],
                 index: match.index
               });
             }
 
             // Transform each wireframe (in reverse to maintain indices)
             for (let i = matches.length - 1; i >= 0; i--) {
-              const { fullMatch, ascii } = matches[i];
+              const { fullMatch, ascii, showSourceFirst } = matches[i];
 
               try {
                 // Transform the ASCII wireframe to HTML
                 const html = module.transform(ascii, { styled: true });
 
                 // Create a preview container with both source and rendered output
-                const preview = [
-                  '<div class="ascii-wireframe-preview">',
-                  '  <div class="ascii-wireframe-rendered">',
-                  '    ' + html,
-                  '  </div>',
-                  '  <details class="ascii-wireframe-source">',
-                  '    <summary>View ASCII Source</summary>',
-                  '    <pre><code>' + escapeHtml(ascii) + '</code></pre>',
-                  '  </details>',
-                  '</div>'
-                ].join('\n');
+                let preview;
+
+                if (showSourceFirst) {
+                  // wireframe-src: Show source first, rendered in collapsible
+                  preview = [
+                    '<div class="ascii-wireframe-preview ascii-wireframe-src-mode">',
+                    '  <div class="ascii-wireframe-source-first">',
+                    '    <pre><code>' + escapeHtml(ascii) + '</code></pre>',
+                    '  </div>',
+                    '  <details class="ascii-wireframe-rendered-collapsible">',
+                    '    <summary>View Rendered HTML</summary>',
+                    '    <div class="ascii-wireframe-rendered-content">',
+                    '      ' + html,
+                    '    </div>',
+                    '  </details>',
+                    '</div>'
+                  ].join('\n');
+                } else {
+                  // wireframe: Show rendered first, source in collapsible (original behavior)
+                  preview = [
+                    '<div class="ascii-wireframe-preview">',
+                    '  <div class="ascii-wireframe-rendered">',
+                    '    ' + html,
+                    '  </div>',
+                    '  <details class="ascii-wireframe-source">',
+                    '    <summary>View ASCII Source</summary>',
+                    '    <pre><code>' + escapeHtml(ascii) + '</code></pre>',
+                    '  </details>',
+                    '</div>'
+                  ].join('\n');
+                }
 
                 transformedMarkdown = transformedMarkdown.replace(fullMatch, preview);
               } catch (err) {
@@ -160,6 +181,47 @@
           font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
           font-size: 0.85em;
           color: #333;
+        }
+
+        /* Styles for wireframe-src mode (source first) */
+        .ascii-wireframe-source-first {
+          padding: 1em;
+          background: #f5f5f5;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        .ascii-wireframe-source-first pre {
+          margin: 0;
+          background: transparent;
+        }
+
+        .ascii-wireframe-source-first code {
+          font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+          font-size: 0.85em;
+          color: #333;
+        }
+
+        .ascii-wireframe-rendered-collapsible {
+          background: #fafafa;
+        }
+
+        .ascii-wireframe-rendered-collapsible summary {
+          padding: 0.75em 1em;
+          cursor: pointer;
+          user-select: none;
+          font-size: 0.9em;
+          color: #666;
+          background: #f9f9f9;
+        }
+
+        .ascii-wireframe-rendered-collapsible summary:hover {
+          background: #f0f0f0;
+        }
+
+        .ascii-wireframe-rendered-content {
+          padding: 1.5em;
+          background: #fafafa;
+          border-top: 1px solid #e0e0e0;
         }
       `;
       document.head.appendChild(style);

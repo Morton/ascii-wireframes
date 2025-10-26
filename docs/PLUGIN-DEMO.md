@@ -9,6 +9,11 @@ Simply write a code block with the `wireframe` language identifier, and the plug
 2. Display a live preview
 3. Add a collapsible "View ASCII Source" section
 
+### Two Display Modes
+
+- **`wireframe`** - Shows rendered HTML first, with source in collapsible section
+- **`wireframe-src`** - Shows ASCII source first, with rendered HTML in collapsible section
+
 ## Example 1: Login Form
 
 Here's a simple login form wireframe:
@@ -40,6 +45,18 @@ A basic box with text:
 │   Content   │
 └─────────────┘
 ```
+
+## Example 2b: Source-First Mode
+
+Same box using `wireframe-src` to show the ASCII source first:
+
+```wireframe-src
+┌─────────────┐
+│   Content   │
+└─────────────┘
+```
+
+Notice how this one displays the ASCII source code by default, with the rendered HTML available in the collapsible "View Rendered HTML" section. This is useful for documentation where you want to emphasize the ASCII syntax.
 
 ## Example 3: Nested Structure
 

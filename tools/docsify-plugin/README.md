@@ -32,7 +32,11 @@ The plugin will automatically load the transformer and start converting ASCII wi
 
 ## Usage
 
-In your markdown files, use code blocks with the `wireframe` language identifier:
+In your markdown files, use code blocks with the `wireframe` or `wireframe-src` language identifier:
+
+### Mode 1: Rendered First (default)
+
+Use `wireframe` to show the rendered HTML first with source in a collapsible section:
 
 ````markdown
 ```wireframe
@@ -59,6 +63,29 @@ The plugin will automatically:
 2. Transform the ASCII to HTML using the transformer
 3. Display a rendered preview
 4. Add a collapsible "View ASCII Source" section
+
+### Mode 2: Source First
+
+Use `wireframe-src` to show the ASCII source first with rendered HTML in a collapsible section:
+
+````markdown
+```wireframe-src
+┌─────────────┐
+│   Content   │
+└─────────────┘
+```
+````
+
+This mode is useful when:
+- You want to emphasize the ASCII syntax in documentation
+- Teaching users how to write ASCII wireframes
+- Providing copy-paste ready examples
+
+The plugin will automatically:
+1. Detect the `wireframe-src` code block
+2. Display the ASCII source code
+3. Transform the ASCII to HTML using the transformer
+4. Add a collapsible "View Rendered HTML" section
 
 ## Example Output
 
