@@ -1,11 +1,11 @@
 # Dashboard Example
 
-An admin dashboard with metrics cards, activity feed, and quick actions.
+An admin dashboard with metrics, activity feed, and quick actions.
 
 ## Features
 
 - Header with search, user menu, settings, and navigation
-- Metrics cards with trend indicators (↑ ↓)
+- Metrics with trend indicators (↑ ↓)
 - Recent activity feed with timestamps
 - Quick action buttons
 - Clean, organized layout
@@ -17,57 +17,62 @@ An admin dashboard with metrics cards, activity feed, and quick actions.
 #### **ASCII Wireframe**
 
 ```
-┌────────────────────────────────────────────────────────────────┐
-│ Dashboard                    [🔍 Search...]  [@user] [⚙] [≡]  │
-├────────────────────────────────────────────────────────────────┤
-│                                                                │
-│  Overview                                                      │
-│                                                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐        │
-│  │ Total Users  │  │ Revenue      │  │ Active       │        │
-│  │              │  │              │  │              │        │
-│  │   12,543     │  │   $45,231    │  │   1,829      │        │
-│  │   ↑ 12%      │  │   ↑ 8%       │  │   ↓ 3%       │        │
-│  └──────────────┘  └──────────────┘  └──────────────┘        │
-│                                                                │
-│  Recent Activity                                               │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │ • New user registration: john@example.com        2m ago  │ │
-│  │ • Payment received: $99.00                       5m ago  │ │
-│  │ • Support ticket created: #12345                15m ago  │ │
-│  │ • New blog post published: "Getting Started"    1h ago  │ │
-│  └──────────────────────────────────────────────────────────┘ │
-│                                                                │
-│  Quick Actions                                                 │
-│  [ + New User ]  [ + New Post ]  [ View Reports ]            │
-│                                                                │
-└────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│ Dashboard              [🔍 Search...]  [@user] [⚙] [≡]  │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  Total Users: 12,543  (↑ 12%)                           │
+│  Revenue: $45,231  (↑ 8%)                               │
+│  Active: 1,829  (↓ 3%)                                  │
+│                                                          │
+│  Recent Activity                                         │
+│  ┌────────────────────────────────────────────────────┐ │
+│  │ • New user: john@example.com             2m ago   │ │
+│  │ • Payment received: $99.00               5m ago   │ │
+│  │ • Support ticket: #12345                15m ago   │ │
+│  │ • Blog post: "Getting Started"           1h ago   │ │
+│  └────────────────────────────────────────────────────┘ │
+│                                                          │
+│  [ + New User ]  [ + New Post ]  [ View Reports ]      │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
 ```
 
 #### **HTML Preview**
 
 <div style="border: 1px solid black;">
   <div style="padding: 8px; border-bottom: 1px solid black;">
-    Dashboard                    [🔍 Search...]  [@user] [⚙] [≡]
+    Dashboard              <input type="text" placeholder="🔍 Search..." style="border: 1px solid black; padding: 4px;">  <button style="border: 1px solid black; padding: 4px 12px; background: white;">@user</button> <span style="border: 1px solid black; padding: 2px 6px;">⚙</span> <span style="border: 1px solid black; padding: 2px 6px;">≡</span>
   </div>
-  <div style="display: flex; gap: 8px;">
-  <div style="border: 1px solid black; padding: 16px; flex: 1;">
-      <p style="margin: 1em 0;">│ Total Users  │  │ Revenue      │  │ Active       │</p>
-      <p style="margin: 1em 0;">│              │  │              │  │              │</p>
-      <p style="margin: 1em 0;">│   12,543     │  │   $45,231    │  │   1,829      │</p>
-      <p style="margin: 1em 0;">│   ↑ 12%      │  │   ↑ 8%       │  │   ↓ 3%       │</p>
+  Total
+  Users:
+  12,543
+  ↑
+  12%
+  Revenue:
+  $45,231
+  ↑
+  8%
+  Active:
+  1,829
+  ↓
+  3%
+  Recent
+  Activity
+  <div style="border: 1px solid black; padding: 8px;">
+    New user: john@example.com             2m ago
+    Payment received: $99.00               5m ago
+    Support ticket: 12345                15m ago
+    Blog post: "Getting Started"           1h ago
   </div>
-  <div style="border: 1px solid black; padding: 16px; flex: 1;">
-      <p style="margin: 1em 0;">│ • New user registration: john@example.com        2m ago  │</p>
-      <p style="margin: 1em 0;">│ • Payment received: $99.00                       5m ago  │</p>
-      <p style="margin: 1em 0;">│ • Support ticket created: #12345                15m ago  │</p>
-      <p style="margin: 1em 0;">│ • New blog post published: "Getting Started"    1h ago  │</p>
-  </div>
-</div>
-    <p style="margin: 1em 0;">Overview</p>
-    <p style="margin: 1em 0;">Recent Activity</p>
-    <p style="margin: 1em 0;">Quick Actions</p>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">+ New User</button>  <button style="border: 1px solid black; padding: 4px 12px; background: white;">+ New Post</button>  <button style="border: 1px solid black; padding: 4px 12px; background: white;">View Reports</button>
+  +
+  New
+  User
+  +
+  New
+  Post
+  View
+  Reports
 </div>
 
 #### **HTML Code**
@@ -75,26 +80,37 @@ An admin dashboard with metrics cards, activity feed, and quick actions.
 ```html
 <div style="border: 1px solid black;">
   <div style="padding: 8px; border-bottom: 1px solid black;">
-    Dashboard                    [🔍 Search...]  [@user] [⚙] [≡]
+    Dashboard              <input type="text" placeholder="🔍 Search..." style="border: 1px solid black; padding: 4px;">  <button style="border: 1px solid black; padding: 4px 12px; background: white;">@user</button> <span style="border: 1px solid black; padding: 2px 6px;">⚙</span> <span style="border: 1px solid black; padding: 2px 6px;">≡</span>
   </div>
-  <div style="display: flex; gap: 8px;">
-  <div style="border: 1px solid black; padding: 16px; flex: 1;">
-      <p style="margin: 1em 0;">│ Total Users  │  │ Revenue      │  │ Active       │</p>
-      <p style="margin: 1em 0;">│              │  │              │  │              │</p>
-      <p style="margin: 1em 0;">│   12,543     │  │   $45,231    │  │   1,829      │</p>
-      <p style="margin: 1em 0;">│   ↑ 12%      │  │   ↑ 8%       │  │   ↓ 3%       │</p>
+  Total
+  Users:
+  12,543
+  ↑
+  12%
+  Revenue:
+  $45,231
+  ↑
+  8%
+  Active:
+  1,829
+  ↓
+  3%
+  Recent
+  Activity
+  <div style="border: 1px solid black; padding: 8px;">
+    New user: john@example.com             2m ago
+    Payment received: $99.00               5m ago
+    Support ticket: 12345                15m ago
+    Blog post: "Getting Started"           1h ago
   </div>
-  <div style="border: 1px solid black; padding: 16px; flex: 1;">
-      <p style="margin: 1em 0;">│ • New user registration: john@example.com        2m ago  │</p>
-      <p style="margin: 1em 0;">│ • Payment received: $99.00                       5m ago  │</p>
-      <p style="margin: 1em 0;">│ • Support ticket created: #12345                15m ago  │</p>
-      <p style="margin: 1em 0;">│ • New blog post published: "Getting Started"    1h ago  │</p>
-  </div>
-</div>
-    <p style="margin: 1em 0;">Overview</p>
-    <p style="margin: 1em 0;">Recent Activity</p>
-    <p style="margin: 1em 0;">Quick Actions</p>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">+ New User</button>  <button style="border: 1px solid black; padding: 4px 12px; background: white;">+ New Post</button>  <button style="border: 1px solid black; padding: 4px 12px; background: white;">View Reports</button>
+  +
+  New
+  User
+  +
+  New
+  Post
+  View
+  Reports
 </div>
 ```
 

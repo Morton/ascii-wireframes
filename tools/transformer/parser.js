@@ -256,12 +256,6 @@ class Parser {
       return this.parseNestedContent(tokens);
     }
 
-    // Check for sidebar pattern (vertical divider ┬...┴ or multiple │)
-    const hasSidebar = this.hasSidebarPattern(tokens);
-    if (hasSidebar) {
-      return this.parseSidebarContent(tokens);
-    }
-
     // Parse as inline content
     return this.parseInlineTokens(tokens);
   }
@@ -270,27 +264,7 @@ class Parser {
    * Parse nested content (boxes within boxes)
    */
   parseNestedContent(tokens) {
-    // Group tokens by line
-    const lines = {};
-    for (const token of tokens) {
-      if (!lines[token.pos.line]) {
-        lines[token.pos.line] = [];
-      }
-      lines[token.pos.line].push(token);
-    }
-
-    const lineNums = Object.keys(lines).map(Number).sort((a, b) => a - b);
-
-    // Check if first line has multiple boxes (card grid)
-    const firstLineTokens = lines[lineNums[0]];
-    const boxCount = firstLineTokens.filter(t => t.type === TokenType.BOX_TOP_LEFT).length;
-
-    if (boxCount >= 2) {
-      // Card grid - extract individual cards
-      return this.parseCardGrid(tokens);
-    }
-
-    // Single nested structure - parse recursively
+    // Parse nested boxes recursively
     const children = [];
     let currentBoxTokens = [];
     let inBox = false;
@@ -338,110 +312,6 @@ class Parser {
     const endLine = tokens[tokens.length - 1].pos.line;
 
     return this.parseBoxContent(tokens, startLine, endLine);
-  }
-
-  /**
-   * Parse card grid
-   */
-  parseCardGrid(tokens) {
-    const cards = [];
-    let currentCardTokens = [];
-    let inCard = false;
-    let cardDepth = 0;
-
-    for (const token of tokens) {
-      if (token.type === TokenType.BOX_TOP_LEFT) {
-        if (!inCard) {
-          inCard = true;
-          cardDepth = 0;
-        }
-        cardDepth++;
-      }
-
-      if (inCard) {
-        currentCardTokens.push(token);
-      }
-
-      if (token.type === TokenType.BOX_BOTTOM_LEFT) {
-        cardDepth--;
-        if (cardDepth === 0) {
-          // Complete card
-          const cardNode = this.parseBoxTokens(currentCardTokens);
-          if (cardNode) {
-            cards.push(cardNode);
-          }
-          currentCardTokens = [];
-          inCard = false;
-        }
-      }
-    }
-
-    return AST.createCardGrid(cards);
-  }
-
-  /**
-   * Check if tokens contain sidebar pattern
-   */
-  hasSidebarPattern(tokens) {
-    // Check for vertical dividers (┬ or ┴ or multiple │ on same line)
-    const lines = {};
-    for (const token of tokens) {
-      if (!lines[token.pos.line]) {
-        lines[token.pos.line] = [];
-      }
-      lines[token.pos.line].push(token);
-    }
-
-    for (const lineTokens of Object.values(lines)) {
-      const hasTopDivider = lineTokens.some(t => t.type === TokenType.BOX_DIVIDER_TOP);
-      const hasBottomDivider = lineTokens.some(t => t.type === TokenType.BOX_DIVIDER_BOTTOM);
-      const verticalCount = lineTokens.filter(t => t.type === TokenType.BOX_VERTICAL).length;
-
-      if (hasTopDivider || hasBottomDivider || verticalCount > 2) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  /**
-   * Parse sidebar content
-   */
-  parseSidebarContent(tokens) {
-    // Split tokens by middle divider
-    // This is simplified - assumes single vertical divider
-    const lines = {};
-    for (const token of tokens) {
-      if (!lines[token.pos.line]) {
-        lines[token.pos.line] = [];
-      }
-      lines[token.pos.line].push(token);
-    }
-
-    const leftTokens = [];
-    const rightTokens = [];
-
-    for (const [lineNum, lineTokens] of Object.entries(lines)) {
-      // Find middle vertical divider
-      const verticals = lineTokens.filter(t => t.type === TokenType.BOX_VERTICAL);
-      if (verticals.length >= 2) {
-        const middleCol = verticals[Math.floor(verticals.length / 2)].pos.col;
-
-        for (const token of lineTokens) {
-          if (token.pos.col < middleCol) {
-            leftTokens.push(token);
-          } else if (token.pos.col > middleCol) {
-            rightTokens.push(token);
-          }
-        }
-      }
-    }
-
-    const left = this.parseInlineTokens(leftTokens);
-    const right = this.parseInlineTokens(rightTokens);
-
-    return AST.createSidebar(left, right);
   }
 
   /**

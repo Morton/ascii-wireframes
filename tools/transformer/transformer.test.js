@@ -131,7 +131,7 @@ describe('ASCII Wireframe Transformer', () => {
     });
   });
 
-  describe('3. Lists and Grids', () => {
+  describe('3. Lists', () => {
     it('should transform simple lists', () => {
       const input = `- Item 1
 - Item 2
@@ -144,21 +144,6 @@ describe('ASCII Wireframe Transformer', () => {
       assert.match(result, /<li>Item 2<\/li>/);
       assert.match(result, /<li>Item 3<\/li>/);
       assert.match(result, /<\/ul>/);
-    });
-
-    it('should transform card grids', () => {
-      const input = `┌─────────┐  ┌─────────┐  ┌─────────┐
-│ Card 1  │  │ Card 2  │  │ Card 3  │
-│         │  │         │  │         │
-└─────────┘  └─────────┘  └─────────┘`;
-
-      const result = transform(input);
-
-      // Should have flex container or grid
-      assert.match(result, /display:\s*flex|display:\s*grid/);
-      assert.match(result, /Card 1/);
-      assert.match(result, /Card 2/);
-      assert.match(result, /Card 3/);
     });
   });
 
@@ -268,28 +253,6 @@ describe('ASCII Wireframe Transformer', () => {
         assert.match(result, /Title/);
         assert.match(result, /Description/);
         assert.match(result, /<button[^>]*>View<\/button>/);
-      });
-    });
-
-    describe('Sidebar Layout', () => {
-      it('should transform sidebar layout', () => {
-        const input = `┌────────┬──────────────────────────┐
-│ Nav    │ Main Content             │
-│        │                          │
-│ Home   │ Page Title               │
-│ About  │                          │
-│ Blog   │ Content goes here...     │
-└────────┴──────────────────────────┘`;
-
-        const result = transform(input);
-
-        assert.match(result, /<nav[^>]*>/);
-        assert.match(result, /<main[^>]*>/);
-        assert.match(result, /Home/);
-        assert.match(result, /About/);
-        assert.match(result, /Blog/);
-        assert.match(result, /Page Title/);
-        assert.match(result, /Content goes here\.\.\./);
       });
     });
   });

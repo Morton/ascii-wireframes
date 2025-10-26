@@ -16,11 +16,6 @@ const DEFAULT_STYLES = {
   input: 'border: 1px solid black; padding: 4px;',
   select: 'border: 1px solid black; padding: 4px;',
   link: 'color: black; text-decoration: underline;',
-  flexContainer: 'display: flex; gap: 8px;',
-  card: 'border: 1px solid black; padding: 16px; flex: 1;',
-  sidebar: 'display: flex; border: 1px solid black;',
-  sidebarLeft: 'border-right: 1px solid black; padding: 16px; min-width: 120px;',
-  sidebarRight: 'padding: 16px; flex: 1;',
   list: 'list-style: disc; padding-left: 20px;',
   h1: 'font-size: 2em; font-weight: bold; margin: 0.67em 0;',
   h2: 'font-size: 1.5em; font-weight: bold; margin: 0.75em 0;',
@@ -56,12 +51,6 @@ function generateNode(node, styled, styles, indent) {
 
     case NodeType.BOX:
       return generateBox(node, styled, styles, indent);
-
-    case NodeType.CARD_GRID:
-      return generateCardGrid(node, styled, styles, indent);
-
-    case NodeType.SIDEBAR:
-      return generateSidebar(node, styled, styles, indent);
 
     case NodeType.CONTAINER:
       return generateContainer(node, styled, styles, indent);
@@ -149,48 +138,6 @@ ${spaces}</div>`;
 ${contentHtml}
 ${spaces}</div>`;
   }
-}
-
-/**
- * Generate card grid
- */
-function generateCardGrid(node, styled, styles, indent) {
-  const spaces = '  '.repeat(indent);
-  const flexStyleAttr = styled ? ` style="${styles.flexContainer}"` : '';
-
-  const cardsHtml = node.cards
-    .map(card => {
-      const cardHtml = generateNode(card, styled, styles, indent + 1);
-      return cardHtml;
-    })
-    .join('\n');
-
-  return `${spaces}<div${flexStyleAttr}>
-${cardsHtml}
-${spaces}</div>`;
-}
-
-/**
- * Generate sidebar
- */
-function generateSidebar(node, styled, styles, indent) {
-  const spaces = '  '.repeat(indent);
-  const containerStyleAttr = styled ? ` style="${styles.sidebar}"` : '';
-  const leftStyleAttr = styled ? ` style="${styles.sidebarLeft}"` : '';
-  const rightStyleAttr = styled ? ` style="${styles.sidebarRight}"` : '';
-
-  const leftHtml = generateNode(node.left, styled, styles, indent + 2);
-  const rightHtml = generateNode(node.right, styled, styles, indent + 2);
-
-  return `${spaces}<div${containerStyleAttr}>
-${spaces}  <nav${leftStyleAttr}>
-${leftHtml}
-${spaces}  </nav>
-
-${spaces}  <main${rightStyleAttr}>
-${rightHtml}
-${spaces}  </main>
-${spaces}</div>`;
 }
 
 /**

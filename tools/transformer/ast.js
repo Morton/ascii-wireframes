@@ -10,8 +10,6 @@ export const NodeType = {
 
   // Structural containers
   BOX: 'Box',
-  CARD_GRID: 'CardGrid',
-  SIDEBAR: 'Sidebar',
   CONTAINER: 'Container',
 
   // Content nodes
@@ -62,20 +60,6 @@ export function createBox(properties) {
     body: null,
     ...properties,
   });
-}
-
-/**
- * Create CardGrid node
- */
-export function createCardGrid(cards = []) {
-  return createNode(NodeType.CARD_GRID, { cards });
-}
-
-/**
- * Create Sidebar node
- */
-export function createSidebar(left, right) {
-  return createNode(NodeType.SIDEBAR, { left, right });
 }
 
 /**
