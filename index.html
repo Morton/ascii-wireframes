@@ -18,6 +18,13 @@
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
       line-height: 1.2;
     }
+    /* Style for HTML previews in tabs */
+    .docsify-tabs__content[data-tab="preview"] {
+      border: 1px solid #ddd;
+      padding: 16px;
+      background: white;
+      min-height: 100px;
+    }
   </style>
 </head>
 <body>
@@ -42,6 +49,13 @@
       },
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      tabs: {
+        persist: false,
+        sync: false,
+        theme: 'classic',
+        tabComments: true,
+        tabHeadings: true
       }
     }
   </script>
@@ -53,5 +67,7 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
   <!-- Emoji plugin -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <!-- Tabs plugin -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
 </body>
 </html>
