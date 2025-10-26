@@ -84,7 +84,7 @@ A complete blog post layout with featured image, article content, engagement but
 
   <article style="padding: 24px;">
     <div style="border: 1px solid black; padding: 80px; margin-bottom: 24px; text-align: center; background: #f5f5f5;">
-      [Featured Image]
+      Featured Image
     </div>
 
     <h1 style="font-size: 2em; font-weight: bold; margin-bottom: 8px;">Getting Started with ASCII Wireframes</h1>
@@ -152,7 +152,7 @@ A complete blog post layout with featured image, article content, engagement but
   <article style="padding: 24px;">
     <!-- Featured image -->
     <div style="border: 1px solid black; padding: 80px; margin-bottom: 24px; text-align: center; background: #f5f5f5;">
-      [Featured Image]
+      Featured Image
     </div>
 
     <!-- Article header -->
