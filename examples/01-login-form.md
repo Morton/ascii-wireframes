@@ -57,7 +57,7 @@ A simple authentication form with email/password fields and social login options
     <p style="margin: 1em 0;">─────────── or ───────────</p>
     <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with Google</button>
     <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with GitHub</button>
-    Don't have an account? <a href="#" style="color: black; text-decoration: underline;">→ Sign up</a>
+    Don't have an account? → Sign up
 </div>
 
 #### **HTML Code**
@@ -75,7 +75,7 @@ A simple authentication form with email/password fields and social login options
     <p style="margin: 1em 0;">─────────── or ───────────</p>
     <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with Google</button>
     <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with GitHub</button>
-    Don't have an account? <a href="#" style="color: black; text-decoration: underline;">→ Sign up</a>
+    Don't have an account? → Sign up
 </div>
 ```
 

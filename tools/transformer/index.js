@@ -138,7 +138,7 @@ function transformLine(line, styled, styles) {
     }
 
     // Check for icon pattern (single emoji/symbol in brackets)
-    if (/\[[🔍≡⚙]\]/.test(line)) {
+    if (/\[🔍\]/.test(line) || /\[≡\]/.test(line) || /\[⚙\]/.test(line)) {
       return transformIcons(line, styled, styles);
     }
 
@@ -464,7 +464,7 @@ function transformButton(text, styled, styles) {
     if (!trimmed) return match;
 
     // Skip if it's an icon or single character
-    if (/^[🔍≡⚙]$/.test(trimmed)) {
+    if (trimmed === '🔍' || trimmed === '≡' || trimmed === '⚙') {
       const styleAttr = styled ? ` style="${styles.icon}"` : '';
       return `<span${styleAttr}>${trimmed}</span>`;
     }
@@ -505,34 +505,24 @@ function transformInputPlaceholder(text, styled, styles) {
  * Transform checkbox pattern
  */
 function transformCheckbox(text) {
-  // [x] for checked (case insensitive)
-  text = text.replace(/\[x\]\s*([^\n]+)/gi, (match, label) => {
-    return `<label><input type="checkbox" checked> ${label.trim()}</label>`;
+  // Match both checked and unchecked in a single pass to avoid nesting
+  return text.replace(/\[(x| )\]\s*([^\n\[]+?)(?=\s*(?:\[[x ]\]|$))/gi, (match, checked, label) => {
+    const isChecked = checked.toLowerCase() === 'x';
+    const checkedAttr = isChecked ? ' checked' : '';
+    return `<label><input type="checkbox"${checkedAttr}> ${label.trim()}</label>`;
   });
-
-  // [ ] for unchecked
-  text = text.replace(/\[\s*\]\s*([^\n]+)/g, (match, label) => {
-    return `<label><input type="checkbox"> ${label.trim()}</label>`;
-  });
-
-  return text;
 }
 
 /**
  * Transform radio button pattern
  */
 function transformRadio(text) {
-  // (•) for selected
-  text = text.replace(/\(•\)\s*([^\n]+)/g, (match, label) => {
-    return `<label><input type="radio" name="choice" checked> ${label.trim()}</label>`;
+  // Match both selected and unselected in a single pass to avoid nesting
+  return text.replace(/\((•| )\)\s*([^\n(]+?)(?=\s*(?:\[|\(|$))/g, (match, selected, label) => {
+    const isSelected = selected === '•';
+    const checkedAttr = isSelected ? ' checked' : '';
+    return `<label><input type="radio" name="choice"${checkedAttr}> ${label.trim()}</label>`;
   });
-
-  // ( ) for unselected
-  text = text.replace(/\(\s*\)\s*([^\n]+)/g, (match, label) => {
-    return `<label><input type="radio" name="choice"> ${label.trim()}</label>`;
-  });
-
-  return text;
 }
 
 /**
@@ -554,13 +544,14 @@ function transformDropdown(text, styled, styles) {
  * Transform icon pattern
  */
 function transformIcons(text, styled, styles) {
-  const iconRegex = /\[([🔍≡⚙])\]/g;
-
   const styleAttr = styled ? ` style="${styles.icon}"` : '';
 
-  return text.replace(iconRegex, (match, icon) => {
-    return `<span${styleAttr}>${icon}</span>`;
-  });
+  // Handle each icon separately to avoid Unicode character class issues
+  text = text.replace(/\[🔍\]/g, `<span${styleAttr}>🔍</span>`);
+  text = text.replace(/\[≡\]/g, `<span${styleAttr}>≡</span>`);
+  text = text.replace(/\[⚙\]/g, `<span${styleAttr}>⚙</span>`);
+
+  return text;
 }
 
 /**
@@ -569,19 +560,33 @@ function transformIcons(text, styled, styles) {
 function transformLink(text, styled, styles) {
   const styleAttr = styled ? ` style="${styles.link}"` : '';
 
-  // Match → followed by text (arrow first)
-  text = text.replace(/→\s*([^\n]+?)(?=\s*$|<)/g, (match, linkText) => {
-    return `<a href="#"${styleAttr}>→ ${linkText.trim()}</a>`;
+  // Split by common separators to process each link independently
+  const parts = text.split(/(\s+(?:or|and)\s+|\s{2,})/);
+
+  const transformed = parts.map(part => {
+    // Skip separators and already-transformed content
+    if (/^\s*(?:or|and)\s*$/.test(part) || part.includes('<a')) {
+      return part;
+    }
+
+    // Match → followed by text (arrow first)
+    if (/^→\s*\S/.test(part)) {
+      return part.replace(/^→\s*(.+?)$/,  (match, linkText) => {
+        return `<a href="#"${styleAttr}>→ ${linkText.trim()}</a>`;
+      });
+    }
+
+    // Match text followed by → (arrow last)
+    if (/\S\s*→$/.test(part)) {
+      return part.replace(/^(.+?)\s*→$/,  (match, linkText) => {
+        return `<a href="#"${styleAttr}>${linkText.trim()} →</a>`;
+      });
+    }
+
+    return part;
   });
 
-  // Match text followed by → (arrow last)
-  text = text.replace(/([^\n>]+?)\s*→/g, (match, linkText) => {
-    // Avoid double-transforming
-    if (linkText.includes('<a')) return match;
-    return `<a href="#"${styleAttr}>${linkText.trim()} →</a>`;
-  });
-
-  return text;
+  return transformed.join('');
 }
 
 /**
