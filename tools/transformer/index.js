@@ -57,6 +57,17 @@ export function transform(input, options = {}) {
  * Transform detected patterns into HTML
  */
 function transformPatterns(lines, styled, styles) {
+  // FIX #2: Check for horizontal card grid at top level (multiple boxes side by side)
+  if (lines.length > 0 && lines[0].includes('┌')) {
+    const firstLine = lines[0];
+    const boxesOnFirstLine = (firstLine.match(/┌/g) || []).length;
+
+    // If multiple boxes start on the same line, it's a top-level card grid
+    if (boxesOnFirstLine >= 2) {
+      return transformCardGrid(lines, styled, styles);
+    }
+  }
+
   // Check if this is a box structure
   if (isBox(lines)) {
     return transformBoxStructure(lines, styled, styles);
@@ -240,14 +251,65 @@ function transformBoxContent(lines, styled, styles) {
   const hasNestedBoxes = cleanedLines.some(line => line.includes('┌') || line.includes('└'));
 
   if (hasNestedBoxes) {
-    return transformNestedBoxes(lines, styled, styles);
+    // Separate nested box lines from other content lines
+    const nestedBoxLineIndices = [];
+    const regularLineIndices = [];
+
+    let inBox = false;
+    for (let i = 0; i < cleanedLines.length; i++) {
+      const line = cleanedLines[i];
+
+      if (line.includes('┌')) {
+        inBox = true;
+      }
+
+      if (inBox) {
+        nestedBoxLineIndices.push(i);
+      } else {
+        regularLineIndices.push(i);
+      }
+
+      if (line.includes('└')) {
+        inBox = false;
+      }
+    }
+
+    // Process nested boxes and remaining content
+    let html = '';
+    if (nestedBoxLineIndices.length > 0) {
+      const nestedLines = nestedBoxLineIndices.map(i => lines[i]);
+      html += transformNestedBoxes(nestedLines, styled, styles);
+    }
+    if (regularLineIndices.length > 0) {
+      const regularHtml = regularLineIndices
+        .map(i => cleanedLines[i])
+        .map(line => transformLine(line, styled, styles))
+        .filter(line => line.length > 0)
+        .join('\n    ');
+      if (regularHtml) {
+        html += '\n    ' + regularHtml;
+      }
+    }
+
+    return html;
   }
 
   // Check if there's a vertical divider (sidebar pattern)
+  // Only detect sidebar if there's NO horizontal box arrangement
   const hasSidebar = lines.some(line => line.includes('│') && line.split('│').length > 3);
 
   if (hasSidebar) {
     return transformSidebarLayout(lines, styled, styles);
+  }
+
+  // FIX #1: Single-line content should not be wrapped in <p>
+  // If only one line of simple content, return as plain text
+  if (cleanedLines.length === 1 && cleanedLines[0].trim().length > 0) {
+    const line = cleanedLines[0].trim();
+    // Check if it's simple text (no interactive elements or headings)
+    if (!line.includes('[') && !line.includes('→') && !line.startsWith('#')) {
+      return line;
+    }
   }
 
   // Transform each line
@@ -258,51 +320,70 @@ function transformBoxContent(lines, styled, styles) {
 }
 
 /**
+ * Transform card grid (horizontal boxes)
+ */
+function transformCardGrid(lines, styled, styles) {
+  const flexStyleAttr = styled ? ` style="${styles.flexContainer}"` : '';
+  const cardStyleAttr = styled ? ` style="border: 1px solid black; padding: 16px; flex: 1;"` : '';
+
+  // Extract card content by tracking box boundaries
+  const cards = [];
+  let currentCard = [];
+
+  for (const line of lines) {
+    if (line.includes('┌')) {
+      if (currentCard.length > 0) {
+        cards.push(currentCard);
+      }
+      currentCard = [];
+    } else if (line.includes('└')) {
+      cards.push(currentCard);
+      currentCard = [];
+    } else if (currentCard.length >= 0) {
+      // Clean the line and add to current card
+      const cleaned = cleanBoxLine(line);
+      if (cleaned) {
+        currentCard.push(cleaned);
+      }
+    }
+  }
+
+  const cardHtml = cards.map(cardLines => {
+    const content = cardLines
+      .filter(l => l.length > 0)
+      .map(l => transformLine(l, styled, styles))
+      .join('\n      ');
+    return `  <div${cardStyleAttr}>
+      ${content}
+  </div>`;
+  }).join('\n');
+
+  return `<div${flexStyleAttr}>
+${cardHtml}
+</div>`;
+}
+
+/**
  * Transform nested boxes (card grids)
  */
 function transformNestedBoxes(lines, styled, styles) {
   const cleanedLines = lines.map(line => cleanBoxLine(line));
-  const text = cleanedLines.join('\n');
 
-  // Detect multiple boxes side by side (card grid)
-  const boxCount = (text.match(/┌/g) || []).length;
+  // FIX #2: Detect horizontal box arrangement (card grid) vs vertical divider (sidebar)
+  // Check first line for multiple boxes starting on same line
+  const firstLine = cleanedLines[0] || '';
+  const boxesOnFirstLine = (firstLine.match(/┌/g) || []).length;
 
-  if (boxCount >= 2) {
-    // It's a card grid
-    const flexStyleAttr = styled ? ` style="${styles.flexContainer}"` : '';
-    const cardStyleAttr = styled ? ` style="border: 1px solid black; padding: 16px; flex: 1;"` : '';
+  // If multiple boxes start on the same line, it's a horizontal card grid
+  if (boxesOnFirstLine >= 2) {
+    return transformCardGrid(lines, styled, styles);
+  }
 
-    // Extract card content (simplified)
-    const cards = [];
-    let currentCard = [];
+  // Otherwise, check if it's a sidebar layout (vertical divider)
+  const hasSidebar = lines.some(line => line.includes('│') && line.split('│').length > 3);
 
-    for (const line of cleanedLines) {
-      if (line.includes('┌')) {
-        if (currentCard.length > 0) {
-          cards.push(currentCard);
-        }
-        currentCard = [];
-      } else if (line.includes('└')) {
-        cards.push(currentCard);
-        currentCard = [];
-      } else if (currentCard.length >= 0) {
-        currentCard.push(line);
-      }
-    }
-
-    const cardHtml = cards.map(cardLines => {
-      const content = cardLines
-        .filter(l => l.length > 0)
-        .map(l => transformLine(l, styled, styles))
-        .join('\n      ');
-      return `  <div${cardStyleAttr}>
-      ${content}
-  </div>`;
-    }).join('\n');
-
-    return `<div${flexStyleAttr}>
-${cardHtml}
-</div>`;
+  if (hasSidebar) {
+    return transformSidebarLayout(lines, styled, styles);
   }
 
   // Single nested box
