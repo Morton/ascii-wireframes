@@ -210,6 +210,19 @@ function transformBoxStructure(lines, styled, styles) {
 
   // Simple box without divider
   const contentLines = lines.slice(1, -1);
+
+  // Check if this is a textarea pattern (all lines are underscores)
+  const cleanedContentLines = contentLines.map(line => cleanBoxLine(line));
+  const nonEmptyLines = cleanedContentLines.filter(line => line.trim().length > 0);
+  const isTextarea = nonEmptyLines.length >= 2 &&
+    nonEmptyLines.every(line => /^_+$/.test(line.trim()));
+
+  if (isTextarea) {
+    const rows = nonEmptyLines.length;
+    const styleAttr = styled ? ` style="${styles.input}"` : '';
+    return `<textarea rows="${rows}"${styleAttr}></textarea>`;
+  }
+
   const content = transformBoxContent(contentLines, styled, styles);
 
   const styleAttr = styled ? ` style="${styles.box}"` : '';

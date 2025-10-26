@@ -61,6 +61,17 @@ describe('ASCII Wireframe Transformer', () => {
       assert.match(result, /<input[^>]*placeholder="Enter text\.\.\."[^>]*>/);
     });
 
+    it('should transform textarea pattern (box with underscores)', () => {
+      const input = `┌───────────────────────────────┐
+│_______________________________│
+│_______________________________│
+│_______________________________│
+└───────────────────────────────┘`;
+
+      const result = transform(input);
+      assert.match(result, /<textarea[^>]*rows="3"[^>]*><\/textarea>/);
+    });
+
     it('should transform checkboxes', () => {
       const input = `[ ] Unchecked    [x] Checked`;
 
