@@ -1,0 +1,24 @@
+┌─────────────────────────────────────┐
+│                                     │
+│         Welcome Back!               │
+│                                     │
+│  Email:                             │
+│  [____________________________]     │
+│                                     │
+│  Password:                          │
+│  [____________________________]     │
+│                                     │
+│  [ ] Remember me                    │
+│                                     │
+│         [ Sign In ]                 │
+│                                     │
+│  → Forgot password?                 │
+│                                     │
+│  ─────────── or ───────────         │
+│                                     │
+│  [ Continue with Google ]           │
+│  [ Continue with GitHub ]           │
+│                                     │
+│  Don't have an account? → Sign up   │
+│                                     │
+└─────────────────────────────────────┘
