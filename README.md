@@ -61,7 +61,7 @@ The documentation includes:
 
 Create a simple login form:
 
-```
+```wireframe-src
 ┌─────────────────────────┐
 │ Login                   │
 ├─────────────────────────┤
@@ -105,7 +105,7 @@ const html = transform(`
 ### Use with AI Assistants
 
 **With Claude Code**:
-```
+```wireframe-src
 Create a React component from this wireframe:
 
 ┌─────────────────────────┐

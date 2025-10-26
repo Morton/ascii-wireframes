@@ -17,7 +17,7 @@ AI assistants like Claude Code, GitHub Copilot, and ChatGPT excel at understandi
 
 **Best for**: Creating new UI components from scratch
 
-```
+```wireframe-src
 Prompt: "Create a React component from this wireframe:"
 
 ┌─────────────────────────────┐
@@ -79,7 +79,7 @@ export function SearchResults({ query, results }) {
 ## Feature: User Dashboard
 
 ### Wireframe
-```
+```wireframe-src
 ┌────────────────────────────────────────┐
 │ Dashboard               [@user] [⚙]   │
 ├────────────────────────────────────────┤
@@ -113,7 +113,7 @@ export function SearchResults({ query, results }) {
 
 **Best for**: Improving existing components
 
-```
+```wireframe-src
 Prompt: "Refactor this component to match the wireframe:"
 
 Current:
@@ -287,7 +287,7 @@ Step 2: Success
 
 ### Authentication
 
-```
+```wireframe-src
 ┌─────────────────────────────┐
 │ Sign In                     │
 ├─────────────────────────────┤
@@ -323,7 +323,7 @@ Users:
 
 ### Settings Panel
 
-```
+```wireframe-src
 ┌─────────────────────────────┐
 │ Settings               [×]  │
 ├─────────────────────────────┤

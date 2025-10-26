@@ -16,7 +16,7 @@ A simple authentication form with email/password fields and social login options
 
 #### **ASCII Wireframe**
 
-```
+```wireframe-src
 ┌─────────────────────────────────────┐
 │                                     │
 │         Welcome Back!               │

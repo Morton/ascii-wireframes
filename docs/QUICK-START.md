@@ -15,7 +15,7 @@ ASCII wireframes are plain-text diagrams that represent user interfaces using bo
 
 Create a simple login form:
 
-```
+```wireframe-src
 ┌─────────────────────────┐
 │ Login                   │
 ├─────────────────────────┤
@@ -65,7 +65,7 @@ Output:
 
 ### With Claude Code
 
-```
+```wireframe-src
 Create a React component from this wireframe:
 
 ┌─────────────────────────┐
@@ -140,7 +140,7 @@ function LoginModal() {
 - **Use consistent spacing**: Align elements visually
 - **Add annotations**: Use comments for clarification
 
-```
+```wireframe-src
 ┌─────────────────┐
 │ Dashboard       │  ← Header with title
 ├─────────────────┤
@@ -155,7 +155,7 @@ function LoginModal() {
 - **Add too much detail**: Colors, shadows, exact sizes aren't needed
 
 ### 🎨 Style Guide
-```
+```wireframe-src
 // Good - Clear and simple
 ┌──────────┐
 │ [Submit] │
@@ -170,7 +170,7 @@ function LoginModal() {
 ## Common Patterns
 
 ### Form with Validation
-```
+```wireframe-src
 ┌─────────────────────────┐
 │ Register                │
 ├─────────────────────────┤
@@ -189,7 +189,7 @@ function LoginModal() {
 ```
 
 ### Dashboard Metrics
-```
+```wireframe-src
 ┌──────────────────────────────┐
 │ Analytics Dashboard     [⚙]  │
 ├──────────────────────────────┤
@@ -202,7 +202,7 @@ function LoginModal() {
 ```
 
 ### Nested Content
-```
+```wireframe-src
 ┌─────────────────────────────┐
 │ Messages               [+]  │
 ├─────────────────────────────┤

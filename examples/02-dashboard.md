@@ -16,7 +16,7 @@ An admin dashboard with metrics, activity feed, and quick actions.
 
 #### **ASCII Wireframe**
 
-```
+```wireframe-src
 ┌──────────────────────────────────────────────────────────┐
 │ Dashboard              [🔍 Search...]  [@user] [⚙] [≡]  │
 ├──────────────────────────────────────────────────────────┤

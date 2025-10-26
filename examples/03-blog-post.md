@@ -19,7 +19,7 @@ A complete blog post layout with featured image, article content, engagement but
 
 #### **ASCII Wireframe**
 
-```
+```wireframe-src
 ┌─────────────────────────────────────────────────────────┐
 │ MyBlog                            Home  About  [≡]     │
 ├─────────────────────────────────────────────────────────┤
