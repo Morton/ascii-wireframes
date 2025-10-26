@@ -12,9 +12,6 @@ An admin dashboard with metrics, activity feed, and quick actions.
 
 ## Wireframe
 
-<!-- tabs:start -->
-
-#### **ASCII Wireframe**
 
 ```wireframe-src
 ┌──────────────────────────────────────────────────────────┐
@@ -38,83 +35,6 @@ An admin dashboard with metrics, activity feed, and quick actions.
 └──────────────────────────────────────────────────────────┘
 ```
 
-#### **HTML Preview**
-
-<div style="border: 1px solid black;">
-  <div style="padding: 8px; border-bottom: 1px solid black;">
-    Dashboard              <input type="text" placeholder="🔍 Search..." style="border: 1px solid black; padding: 4px;">  <button style="border: 1px solid black; padding: 4px 12px; background: white;">@user</button> <span style="border: 1px solid black; padding: 2px 6px;">⚙</span> <span style="border: 1px solid black; padding: 2px 6px;">≡</span>
-  </div>
-  Total
-  Users:
-  12,543
-  ↑
-  12%
-  Revenue:
-  $45,231
-  ↑
-  8%
-  Active:
-  1,829
-  ↓
-  3%
-  Recent
-  Activity
-  <div style="border: 1px solid black; padding: 8px;">
-    New user: john@example.com             2m ago
-    Payment received: $99.00               5m ago
-    Support ticket: 12345                15m ago
-    Blog post: "Getting Started"           1h ago
-  </div>
-  +
-  New
-  User
-  +
-  New
-  Post
-  View
-  Reports
-</div>
-
-#### **HTML Code**
-
-```html
-<div style="border: 1px solid black;">
-  <div style="padding: 8px; border-bottom: 1px solid black;">
-    Dashboard              <input type="text" placeholder="🔍 Search..." style="border: 1px solid black; padding: 4px;">  <button style="border: 1px solid black; padding: 4px 12px; background: white;">@user</button> <span style="border: 1px solid black; padding: 2px 6px;">⚙</span> <span style="border: 1px solid black; padding: 2px 6px;">≡</span>
-  </div>
-  Total
-  Users:
-  12,543
-  ↑
-  12%
-  Revenue:
-  $45,231
-  ↑
-  8%
-  Active:
-  1,829
-  ↓
-  3%
-  Recent
-  Activity
-  <div style="border: 1px solid black; padding: 8px;">
-    New user: john@example.com             2m ago
-    Payment received: $99.00               5m ago
-    Support ticket: 12345                15m ago
-    Blog post: "Getting Started"           1h ago
-  </div>
-  +
-  New
-  User
-  +
-  New
-  Post
-  View
-  Reports
-</div>
-```
-
-<!-- tabs:end -->
 
 ## Use Case
 

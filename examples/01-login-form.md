@@ -12,9 +12,6 @@ A simple authentication form with email/password fields and social login options
 
 ## Wireframe
 
-<!-- tabs:start -->
-
-#### **ASCII Wireframe**
 
 ```wireframe-src
 ┌─────────────────────────────────────┐
@@ -43,43 +40,6 @@ A simple authentication form with email/password fields and social login options
 └─────────────────────────────────────┘
 ```
 
-#### **HTML Preview**
-
-<div style="border: 1px solid black; padding: 8px;">
-  <p style="margin: 1em 0;">Welcome Back!</p>
-    <p style="margin: 1em 0;">Email:</p>
-    <input type="text" style="border: 1px solid black; padding: 4px;">
-    <p style="margin: 1em 0;">Password:</p>
-    <input type="text" style="border: 1px solid black; padding: 4px;">
-    <label><input type="checkbox"> Remember me</label>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">Sign In</button>
-    <a href="#" style="color: black; text-decoration: underline;">→ Forgot password?</a>
-    <p style="margin: 1em 0;">─────────── or ───────────</p>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with Google</button>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with GitHub</button>
-    Don't have an account? → Sign up
-</div>
-
-#### **HTML Code**
-
-```html
-<div style="border: 1px solid black; padding: 8px;">
-  <p style="margin: 1em 0;">Welcome Back!</p>
-    <p style="margin: 1em 0;">Email:</p>
-    <input type="text" style="border: 1px solid black; padding: 4px;">
-    <p style="margin: 1em 0;">Password:</p>
-    <input type="text" style="border: 1px solid black; padding: 4px;">
-    <label><input type="checkbox"> Remember me</label>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">Sign In</button>
-    <a href="#" style="color: black; text-decoration: underline;">→ Forgot password?</a>
-    <p style="margin: 1em 0;">─────────── or ───────────</p>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with Google</button>
-    <button style="border: 1px solid black; padding: 4px 12px; background: white;">Continue with GitHub</button>
-    Don't have an account? → Sign up
-</div>
-```
-
-<!-- tabs:end -->
 
 ## Use Case
 
