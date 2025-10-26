@@ -12,6 +12,10 @@ A simple authentication form with email/password fields and social login options
 
 ## Wireframe
 
+<!-- tabs:start -->
+
+#### **ASCII Wireframe**
+
 ```
 ┌─────────────────────────────────────┐
 │                                     │
@@ -38,6 +42,100 @@ A simple authentication form with email/password fields and social login options
 │                                     │
 └─────────────────────────────────────┘
 ```
+
+#### **HTML Preview**
+
+<div style="border: 1px solid black; padding: 32px; max-width: 400px; margin: 0 auto;">
+  <h2 style="text-align: center; margin-bottom: 24px;">Welcome Back!</h2>
+
+  <div style="margin-bottom: 16px;">
+    <label style="display: block; margin-bottom: 4px;">Email:</label>
+    <input type="email" style="border: 1px solid black; padding: 8px; width: 100%;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label style="display: block; margin-bottom: 4px;">Password:</label>
+    <input type="password" style="border: 1px solid black; padding: 8px; width: 100%;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label>
+      <input type="checkbox"> Remember me
+    </label>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 16px;">
+    <button style="border: 1px solid black; padding: 8px 32px; background: white;">Sign In</button>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 16px;">
+    <a href="#" style="color: black; text-decoration: underline;">→ Forgot password?</a>
+  </div>
+
+  <div style="text-align: center; margin: 16px 0; border-top: 1px solid black; padding-top: 16px;">
+    or
+  </div>
+
+  <div style="margin-bottom: 8px;">
+    <button style="border: 1px solid black; padding: 8px; width: 100%; background: white;">Continue with Google</button>
+  </div>
+  <div style="margin-bottom: 16px;">
+    <button style="border: 1px solid black; padding: 8px; width: 100%; background: white;">Continue with GitHub</button>
+  </div>
+
+  <div style="text-align: center;">
+    Don't have an account? <a href="#" style="color: black; text-decoration: underline;">→ Sign up</a>
+  </div>
+</div>
+
+#### **HTML Code**
+
+```html
+<div style="border: 1px solid black; padding: 32px; max-width: 400px; margin: 0 auto;">
+  <h2 style="text-align: center; margin-bottom: 24px;">Welcome Back!</h2>
+
+  <div style="margin-bottom: 16px;">
+    <label style="display: block; margin-bottom: 4px;">Email:</label>
+    <input type="email" style="border: 1px solid black; padding: 8px; width: 100%;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label style="display: block; margin-bottom: 4px;">Password:</label>
+    <input type="password" style="border: 1px solid black; padding: 8px; width: 100%;">
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <label>
+      <input type="checkbox"> Remember me
+    </label>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 16px;">
+    <button style="border: 1px solid black; padding: 8px 32px; background: white;">Sign In</button>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 16px;">
+    <a href="#" style="color: black; text-decoration: underline;">→ Forgot password?</a>
+  </div>
+
+  <div style="text-align: center; margin: 16px 0; border-top: 1px solid black; padding-top: 16px;">
+    or
+  </div>
+
+  <div style="margin-bottom: 8px;">
+    <button style="border: 1px solid black; padding: 8px; width: 100%; background: white;">Continue with Google</button>
+  </div>
+  <div style="margin-bottom: 16px;">
+    <button style="border: 1px solid black; padding: 8px; width: 100%; background: white;">Continue with GitHub</button>
+  </div>
+
+  <div style="text-align: center;">
+    Don't have an account? <a href="#" style="color: black; text-decoration: underline;">→ Sign up</a>
+  </div>
+</div>
+```
+
+<!-- tabs:end -->
 
 ## Use Case
 
