@@ -1,0 +1,20 @@
+{
+  "name": "@ascii-wireframes/validator",
+  "version": "0.1.0",
+  "description": "Validation tool for ASCII wireframes",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js",
+    "validate": "node index.js"
+  },
+  "keywords": [
+    "ascii",
+    "wireframe",
+    "validation",
+    "ui",
+    "design"
+  ],
+  "author": "ASCII Wireframes Contributors",
+  "license": "MIT"
+}
