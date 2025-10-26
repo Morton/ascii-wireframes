@@ -153,6 +153,64 @@ An admin dashboard with metrics cards, activity feed, and quick actions.
 </div>
 ```
 
+#### **Unstyled HTML**
+
+```html
+<div>
+  <!-- Header -->
+  <header>
+    <strong>Dashboard</strong>
+    <div>
+      <input type="text" placeholder="🔍 Search...">
+      <span>@user</span>
+      <button>⚙</button>
+      <button>≡</button>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div>
+    <h3>Overview</h3>
+
+    <!-- Metrics cards -->
+    <div>
+      <div>
+        <div>Total Users</div>
+        <div>12,543</div>
+        <div>↑ 12%</div>
+      </div>
+      <div>
+        <div>Revenue</div>
+        <div>$45,231</div>
+        <div>↑ 8%</div>
+      </div>
+      <div>
+        <div>Active</div>
+        <div>1,829</div>
+        <div>↓ 3%</div>
+      </div>
+    </div>
+
+    <!-- Recent activity -->
+    <h3>Recent Activity</h3>
+    <div>
+      <div>• New user registration: john@example.com <span>2m ago</span></div>
+      <div>• Payment received: $99.00 <span>5m ago</span></div>
+      <div>• Support ticket created: #12345 <span>15m ago</span></div>
+      <div>• New blog post published: "Getting Started" <span>1h ago</span></div>
+    </div>
+
+    <!-- Quick actions -->
+    <h3>Quick Actions</h3>
+    <div>
+      <button>+ New User</button>
+      <button>+ New Post</button>
+      <button>View Reports</button>
+    </div>
+  </div>
+</div>
+```
+
 <!-- tabs:end -->
 
 ## Use Case
